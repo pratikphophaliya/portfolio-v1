@@ -1,0 +1,161 @@
+/* Side panel shown when a book is picked up. Loaded in number order; later files override earlier ones. */
+
+.detail-panel {
+  position: absolute;
+  top: 20%;
+  right: clamp(42px, 7vw, 116px);
+  z-index: 9;
+  width: min(38vw, 470px);
+  max-height: 68vh;
+  padding: clamp(24px, 3vw, 42px);
+  overflow: auto;
+  border: 1px solid rgba(49, 38, 28, 0.22);
+  background:
+    linear-gradient(90deg, rgba(84, 58, 37, 0.055), transparent 6%, transparent 94%, rgba(84, 58, 37, 0.045)),
+    rgba(244, 237, 220, 0.91);
+  box-shadow:
+    0 28px 80px rgba(56, 36, 21, 0.12),
+    inset 0 0 36px rgba(113, 79, 46, 0.055);
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 620ms var(--ease-out), transform 620ms var(--ease-out);
+  pointer-events: none;
+  backdrop-filter: blur(14px);
+}
+
+.detail-panel::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(74, 52, 35, 0.08), transparent);
+  content: "";
+  pointer-events: none;
+}
+
+.mode-detail .detail-panel {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0ms, 300ms, 300ms;
+  pointer-events: auto;
+}
+
+.mode-detail.is-opening .detail-panel {
+  pointer-events: none;
+}
+
+.mode-detail .browse-ui {
+  opacity: 0;
+  transform: translateY(28px);
+  pointer-events: none;
+}
+
+.mode-detail .hero-word {
+  opacity: 0.22;
+  transform: translateX(-51%) scale(0.96);
+}
+
+.mode-detail .masthead {
+  opacity: 0.34;
+  transform: translateY(-8px);
+}
+
+.close-button {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border-radius: 50%;
+  place-items: center;
+}
+
+.eyebrow {
+  margin: 0 46px 18px 0;
+  color: var(--ink);
+}
+
+.detail-title {
+  max-width: 90%;
+  margin: 0;
+  font-size: clamp(2.4rem, 5vw, 5.2rem);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 0.92;
+}
+
+.detail-deck {
+  margin: 22px 0 0;
+  font-size: clamp(1rem, 1.35vw, 1.22rem);
+  line-height: 1.55;
+}
+
+.detail-deck::first-letter {
+  float: left;
+  margin: 5px 7px 0 0;
+  color: var(--accent);
+  font-size: 3.25em;
+  line-height: 0.72;
+}
+
+.meta-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 24px;
+  margin: 30px 0 0;
+  padding: 22px 0 0;
+  border-top: 1px solid var(--rule);
+}
+
+.meta-list div {
+  min-width: 0;
+}
+
+.meta-list dt {
+  margin: 0 0 6px;
+  color: var(--ink-soft);
+}
+
+.meta-list dd {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.detail-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule);
+}
+
+.detail-controls .microcopy {
+  text-align: left;
+}
+
+.reset-button {
+  flex: 0 0 auto;
+  min-height: 36px;
+  padding: 0 14px;
+}
+
+.folio {
+  position: absolute;
+  right: 40px;
+  bottom: 31px;
+  z-index: 6;
+  color: rgba(43, 35, 28, 0.55);
+  writing-mode: vertical-rl;
+  transition: opacity 300ms ease;
+  pointer-events: none;
+}
+
+.mode-detail .folio {
+  opacity: 0;
+}

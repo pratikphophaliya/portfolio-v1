@@ -1,0 +1,170 @@
+/* Tablet, phone, touch and reduced-motion rules for the files above. Loaded in number order; later files override earlier ones. */
+
+@media (max-width: 900px) {
+  .masthead {
+    top: 34px;
+    right: 32px;
+    left: 32px;
+  }
+
+  .issue {
+    max-width: 170px;
+  }
+
+  .browse-ui {
+    right: 32px;
+    bottom: 30px;
+    left: 32px;
+    grid-template-columns: 1fr auto;
+  }
+
+  .selection {
+    grid-column: 1 / -1;
+  }
+
+  .browse-actions {
+    justify-content: flex-start;
+  }
+
+  .index-nav {
+    align-self: center;
+  }
+
+  .microcopy {
+    display: none;
+  }
+
+  .detail-panel {
+    top: auto;
+    right: 24px;
+    bottom: 24px;
+    left: 24px;
+    width: auto;
+    max-height: 42vh;
+    padding: 24px;
+  }
+
+  .detail-title {
+    font-size: clamp(2.5rem, 10vw, 4.5rem);
+  }
+
+  .detail-deck {
+    margin-top: 14px;
+    font-size: 0.98rem;
+  }
+
+  .meta-list {
+    margin-top: 20px;
+  }
+
+  .fallback__grid {
+    grid-template-columns: repeat(7, minmax(132px, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .frame {
+    inset: 10px;
+  }
+
+  .masthead {
+    top: 24px;
+    right: 22px;
+    left: 22px;
+  }
+
+  .identity {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .issue {
+    font-size: 0.56rem;
+  }
+
+  .hero-word {
+    top: 17%;
+    font-size: 35vw;
+  }
+
+  .browse-ui {
+    right: 22px;
+    bottom: 20px;
+    left: 22px;
+    gap: 14px;
+  }
+
+  .selection {
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+  }
+
+  .selection__title {
+    font-size: 1.7rem;
+  }
+
+  .selection__note {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 0.78rem;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .text-button {
+    padding: 0 14px;
+  }
+
+  .markers {
+    gap: 2px;
+  }
+
+  .marker {
+    width: 20px;
+  }
+
+  .detail-panel {
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+    max-height: 44vh;
+  }
+
+  .meta-list {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .folio {
+    display: none;
+  }
+
+  .static-fallback {
+    padding: 28px 22px;
+  }
+
+  .fallback__header {
+    display: grid;
+  }
+
+  .fallback__status {
+    text-align: left;
+  }
+}
+
+@media (pointer: coarse) {
+  .pointer-label {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

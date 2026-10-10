@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171a24">
+  <meta name="description" content="The portfolio of Pratik Phophaliya, a B.Tech student at IIIT Allahabad, as a 3D bookshelf of seven books: About Me, Projects, Experience, Origins, Resume, Hobbies and Contact.">
+  <title>Pratik Phophaliya — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+
+  <!-- Styles. Keep this order: later files override earlier ones. -->
+  <link rel="stylesheet" href="css/01-tokens.css">
+  <link rel="stylesheet" href="css/02-shell.css">
+  <link rel="stylesheet" href="css/03-shelf-controls.css">
+  <link rel="stylesheet" href="css/04-detail-panel.css">
+  <link rel="stylesheet" href="css/05-fallback-loading.css">
+  <link rel="stylesheet" href="css/06-responsive.css">
+  <link rel="stylesheet" href="css/07-minimal-theme.css">
+  <link rel="stylesheet" href="css/08-editorial-theme.css">
+  <link rel="stylesheet" href="css/09-portfolio.css">
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <main class="experience" id="experience">
+    <div class="scene-shell">
+      <canvas id="scene" aria-hidden="true"></canvas>
+    </div>
+
+    <header class="editorial-header" aria-label="Collection">
+      <div class="editorial-identity">
+        <strong id="site-name">Pratik Phophaliya</strong>
+        <span id="site-tagline">B.Tech student · IIIT Allahabad</span>
+      </div>
+      <div class="editorial-index">
+        <span id="site-edition">Portfolio · 2026</span>
+        <span id="palette-label">Ultramarine · bone · copper</span>
+      </div>
+    </header>
+
+    <div class="pointer-label" id="pointer-label" aria-hidden="true">
+      <span id="pointer-label-index">Volume 01</span>
+      <strong id="pointer-label-title">About Me</strong>
+    </div>
+
+    <section class="browse-ui" id="browse-ui" aria-label="Shelf navigation">
+      <div class="selection">
+        <span class="counter" id="counter">01 / 07</span>
+        <div class="selection__copy">
+          <h1 class="selection__title" id="selection-title">About Me</h1>
+          <p class="selection__note" id="selection-note">Who I am, what I study, and what I care about.</p>
+        </div>
+      </div>
+
+      <div class="browse-actions">
+        <button class="round-button" id="previous" type="button" aria-label="Previous volume">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m10.5 3.5-4.5 4.5 4.5 4.5"></path></svg>
+        </button>
+        <button class="text-button" id="inspect" type="button">Open</button>
+        <button class="round-button" id="next" type="button" aria-label="Next volume">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m5.5 3.5 4.5 4.5-4.5 4.5"></path></svg>
+        </button>
+      </div>
+
+      <nav class="index-nav" aria-label="Volume index">
+        <div class="markers" id="markers" role="tablist" aria-label="Choose a volume"></div>
+        <p class="microcopy">Wheel · arrows · select</p>
+      </nav>
+    </section>
+
+    <aside
+      class="detail-panel"
+      id="detail-panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="detail-title"
+      aria-hidden="true"
+      inert
+    >
+      <button class="close-button" id="close-detail" type="button" aria-label="Return volume to shelf">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 4 8 8M12 4l-8 8"></path></svg>
+      </button>
+      <p class="eyebrow" id="detail-eyebrow">Volume I · Who I am</p>
+      <h2 class="detail-title" id="detail-title">About Me</h2>
+      <p class="detail-deck" id="detail-deck">
+        I'm Pratik Phophaliya, a B.Tech student at IIIT Allahabad.
+      </p>
+      <div class="detail-links" id="detail-links"></div>
+      <dl class="meta-list">
+        <div>
+          <dt>Binding</dt>
+          <dd id="detail-binding">Ultramarine cloth · copper foil</dd>
+        </div>
+        <div>
+          <dt>Format</dt>
+          <dd id="detail-format">148 × 216 mm · imagined edition</dd>
+        </div>
+        <div>
+          <dt>Theme</dt>
+          <dd id="detail-theme">Who I am · what I study · what I care about</dd>
+        </div>
+        <div>
+          <dt>Motif</dt>
+          <dd id="detail-motif">Nested brackets</dd>
+        </div>
+      </dl>
+      <div class="page-navigation" role="group" aria-label="Browse sample pages">
+        <button class="page-button" id="previous-page" type="button" aria-label="Previous sample page" disabled>
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m10.5 3.5-4.5 4.5 4.5 4.5"></path></svg>
+        </button>
+        <p class="page-status" aria-live="off">
+          <strong id="page-label">Closed</strong>
+          <span id="page-counter">Click book to open</span>
+        </p>
+        <button class="page-button" id="next-page" type="button" aria-label="Next sample page" disabled>
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m5.5 3.5 4.5 4.5-4.5 4.5"></path></svg>
+        </button>
+      </div>
+      <div class="detail-controls">
+        <p class="microcopy">Drag cover or click once to open · Background to orbit</p>
+        <div class="detail-buttons">
+          <button class="text-button reset-button" id="toggle-book" type="button" aria-pressed="false">Open book</button>
+          <button class="text-button reset-button" id="reset-view" type="button">Reset view</button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="sr-only" id="live-region" aria-live="polite"></div>
+
+    <section class="static-fallback" id="static-fallback" aria-labelledby="fallback-title" hidden>
+      <div class="fallback__header">
+        <div>
+          <p class="fallback__kicker" id="fallback-kicker">Pratik Phophaliya · Portfolio</p>
+          <h2 id="fallback-title">Seven books about me.</h2>
+        </div>
+        <p class="fallback__status" id="fallback-status">
+          The complete catalog remains readable while the interactive shelf is prepared.
+        </p>
+      </div>
+      <div class="fallback__grid" aria-label="The seven books" id="fallback-grid">
+      </div>
+      <div class="fallback__footer">
+        <span id="fallback-credit">3D bookshelf based on the Complete Shelf component by ThreeUI (Meng To).</span>
+      </div>
+    </section>
+
+    <div class="loading" id="loading" aria-live="polite">
+      <div class="loading__inner">
+        <div class="loading__mark" aria-hidden="true"></div>
+        <p>Binding the collection</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts run top to bottom, and the engine files share their variables, so keep this order. -->
+  <script type="module" src="js/vendor.js"></script>
+  <script defer src="js/content.js"></script>
+  <script defer src="js/icons.js"></script>
+  <script defer src="js/site-text.js"></script>
+  <script defer src="js/engine/01-assets.js"></script>
+  <script defer src="js/engine/02-dom.js"></script>
+  <script defer src="js/engine/03-state.js"></script>
+  <script defer src="js/engine/04-cover-motifs.js"></script>
+  <script defer src="js/engine/04b-cover-art.js"></script>
+  <script defer src="js/engine/05-textures-cover.js"></script>
+  <script defer src="js/engine/06-textures-pages.js"></script>
+  <script defer src="js/engine/07-geometry.js"></script>
+  <script defer src="js/engine/08-textures-spine-back.js"></script>
+  <script defer src="js/engine/09-book.js"></script>
+  <script defer src="js/engine/10-camera.js"></script>
+  <script defer src="js/engine/11-room.js"></script>
+  <script defer src="js/engine/12-theme.js"></script>
+  <script defer src="js/engine/13-ui.js"></script>
+  <script defer src="js/engine/14-pages.js"></script>
+  <script defer src="js/engine/15-shelf.js"></script>
+  <script defer src="js/engine/16-pointer.js"></script>
+  <script defer src="js/engine/17-drag.js"></script>
+  <script defer src="js/engine/18-open-close.js"></script>
+  <script defer src="js/engine/19-loop.js"></script>
+  <script defer src="js/engine/20-keyboard-lifecycle.js"></script>
+  <script defer src="js/engine/21-main.js"></script>
+</body>
+</html>

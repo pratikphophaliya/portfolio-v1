@@ -1,0 +1,158 @@
+/* Page shell: frame, masthead, 3D canvas and hover label. Loaded in number order; later files override earlier ones. */
+
+.experience {
+  position: fixed;
+  inset: 0;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--paper);
+  transition: background-color 720ms var(--ease-out), color 520ms var(--ease-out);
+}
+
+.frame {
+  position: absolute;
+  inset: 18px;
+  z-index: 8;
+  border: 1px solid var(--rule);
+  pointer-events: none;
+}
+
+.frame::before,
+.frame::after {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-color: rgba(42, 34, 27, 0.48);
+  content: "";
+}
+
+.frame::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+
+.frame::after {
+  right: -1px;
+  bottom: -1px;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+}
+
+.masthead {
+  position: absolute;
+  top: 40px;
+  right: 42px;
+  left: 42px;
+  z-index: 7;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  transition: opacity 500ms var(--ease-out), transform 700ms var(--ease-out);
+  pointer-events: none;
+}
+
+.identity {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.identity__name {
+  margin: 0;
+  font-size: clamp(1.02rem, 1.55vw, 1.36rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+
+.identity__edition,
+.issue,
+.eyebrow,
+.microcopy,
+.counter,
+.meta-list dt,
+.folio,
+.fallback__kicker {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.identity__edition {
+  color: var(--ink-soft);
+}
+
+.issue {
+  max-width: 260px;
+  margin: 1px 0 0;
+  color: var(--ink-soft);
+  text-align: right;
+}
+
+.hero-word {
+  position: absolute;
+  top: 12.5%;
+  left: 50%;
+  z-index: 1;
+  margin: 0;
+  color: rgba(68, 50, 34, 0.075);
+  font-size: clamp(7rem, 20vw, 20rem);
+  font-weight: 400;
+  letter-spacing: -0.085em;
+  line-height: 0.75;
+  text-transform: uppercase;
+  transform: translateX(-51%);
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 600ms var(--ease-out), transform 900ms var(--ease-out);
+}
+
+.scene-shell {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+}
+
+#scene {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: default;
+  opacity: 0;
+  touch-action: none;
+  transition: opacity 900ms var(--ease-out);
+}
+
+.webgl-ready #scene {
+  opacity: 1;
+}
+
+.pointer-label {
+  position: fixed;
+  z-index: 12;
+  display: grid;
+  min-width: 128px;
+  padding: 9px 12px 8px;
+  border: 1px solid rgba(39, 30, 22, 0.24);
+  background: rgba(244, 236, 219, 0.92);
+  box-shadow: 0 8px 24px rgba(59, 38, 22, 0.08);
+  font-family: var(--mono);
+  font-size: 0.61rem;
+  letter-spacing: 0.12em;
+  line-height: 1.45;
+  text-transform: uppercase;
+  transform: translate(16px, 18px);
+  transition: opacity 120ms ease;
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+}
+
+.pointer-label[aria-hidden="true"] {
+  opacity: 0;
+}
