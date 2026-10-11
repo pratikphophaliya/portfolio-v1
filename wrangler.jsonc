@@ -1,0 +1,6 @@
+{
+  // Tells Cloudflare which folder is the website. The main page is public/index.html.
+  "name": "portfolio-v1",
+  "compatibility_date": "2026-10-01",
+  "assets": { "directory": "./public" }
+}
